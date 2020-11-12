@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Username/Password</title>
+<style>
+body {
+background-image: url(img4.jpg);
+background-attachment: fixed;
+background-repeat: no-repeat;
+background-size: cover;
+color: #8B4513;
+}
+
+#form {
+border: 1px solid black;
+margin: auto;
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+background-color: white;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+transition: 0.3s;
+padding: 10px 5px 10px 5px;
+width: 20%;
+}
+
+p {
+color: #F08080;
+font-weight: 400
+}
+
+input {
+width: 90%;
+}
+
+#resetpass {
+background-image: linear-gradient(blue, cyan);
+border: none;
+color: white;
+padding: 10px 15px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+cursor: pointer;
+width: 100%;
+}
+
+#resetpass:hover {
+background-image: linear-gradient(plum,LightCyan);
+color: black;
+}
+
+a {
+text-decoration: none;
+}
+a:hover {
+text-decoration: underline;
+}
+
+div {
+margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+  margin-left: 5px;
+}
+
+label.error {
+  display: inline;
+}
+
+</style>
+</head>
+<body>
+<div id="form">
+<h2>Reset Password</h2>
+<form id="frm3" action="#">
+<p> Username has been sent to the registered email id.</p>
+<div>
+<input type="Password" id="newpassword" name="newpassword" placeholder="New Password"/>
+</div>
+<div>
+<input type="Password" id="renewpassword" name="renewpassword" placeholder="Re-enter New Password"/>
+</div>
+<div>
+<a href="login.html">Cancel</a>
+</div>
+<div>
+<input type="submit" id="resetpass" value="Reset Password"/>
+</div>
+</form>
+</div>
+<script src="jquery-3.5.1.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#newpassword').focus();
+$('#frm3').submit(function() {
+var newpassword = $('#newpassword').val();
+var renewpassword = $('#renewpassword').val();
+$(".error").remove();
+if (newpassword.length < 8 ) {
+$('#newpassword').after('<span class="error">Enter new password of minimum 8 characters</span>');
+$('#newpassword').val("");
+$('#renewpassword').val("");
+$('#newpassword').focus();
+return false;
+}
+else {
+var regEx = /^(?=^.{5,}$)((?=.*\d)(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+var validPass = regEx.test(newpassword);
+if (!validPass) {
+$('#newpassword').after('<span class="error">Must contain uppercase,lowercase,Number,Special Characters</span>');
+$('#newpassword').val("");
+$('#renewpassword').val("");
+$('#newpassword').focus();
+return false;
+}
+}
+if (renewpassword.length < 1) {
+$('#renewpassword').after('<span class="error">Re-Enter Password</span>');
+$('#renewpassword').focus();
+return false;
+}
+if ((renewpassword.length >=1 && renewpassword.length < 8) || (renewpassword !== newpassword)) {
+$('#renewpassword').after('<span class="error">Password does not match</span>');
+$('#renewpassword').val("");
+$('#renewpassword').focus();
+return false;
+}
+});
+});
+</script>
+</body>
+</html>

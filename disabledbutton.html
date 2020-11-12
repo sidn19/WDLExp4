@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Disabled button</title>
+<style>
+div {
+margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<div>
+<form id="#disable" action="">
+<div>
+<label>Name: <input type="text" placeholder="Enter your name">
+</label>
+</div>
+<div>
+<label>
+<input id="checkbox" type="checkbox"/>I Agree the terms & conditions
+</label>
+</div>
+<div>
+<input type="submit" id="submit" value="Submit" disabled>
+</div>
+</form>
+</div>
+<script src="jquery-3.5.1.js"></script>
+<script src="jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function () {
+$('#checkbox').click(function () {
+$('#submit').prop("disabled", !$("#checkbox").prop("checked"));
+})
+});
+</script>
+</body>
+</html>
